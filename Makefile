@@ -8,7 +8,7 @@ test: clean disk.iso
 	@qemu-system-x86_64 disk.iso
 
 disk.iso: build
-	@grub-mkrescue -o disk.iso build/ 2> /dev/null
+	@grub-mkrescue -o disk.iso build/
 
 build: $(build_artifacts)
 	@mkdir build
@@ -19,6 +19,6 @@ kernel/build/kernel-x86_64:
 	@$(MAKE) -C kernel
 
 clean:
-	-@rm disk.iso
-	-@rm -r build/
-	-@$(MAKE) -C kernel clean
+	-@rm disk.iso > /dev/null
+	-@rm -r build/ > /dev/null
+	-@$(MAKE) -C kernel clean > /dev/null
